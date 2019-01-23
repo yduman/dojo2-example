@@ -1,0 +1,21 @@
+{
+  "name": "dojo2-example",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "dojo build --mode dev --watch memory --serve --port 3001",
+    "prod": "dojo build --mode dist"
+  },
+  "dependencies": {
+    "@dojo/framework": "^4.0.0",
+    "@dojo/themes": "^4.0.0",
+    "@dojo/widgets": "^4.0.0",
+    "resize-observer-polyfill": "^1.5.1",
+    "tslib": "~1.8.1"
+  },
+  "devDependencies": {
+    "@dojo/cli-build-app": "^4.0.0",
+    "@dojo/cli-test-intern": "^4.0.0",
+    "@types/node": "~9.6.5",
+    "typescript": "~2.6.1"
+  }
+}
