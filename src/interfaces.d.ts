@@ -1,3 +1,5 @@
+export type WithTarget<T extends Event = Event, E extends HTMLElement = HTMLInputElement> = T & { target: E };
+
 export interface ResourceBased {
   loading: boolean;
   loaded: boolean;
@@ -12,6 +14,10 @@ export interface User {
 export interface Routing {
   outlet: string;
   params: { [index: string]: string };
+}
+
+export interface Errors {
+  [index: string]: string[];
 }
 
 export interface Login extends ResourceBased {
@@ -29,4 +35,5 @@ export interface State {
   login: Login;
   user: UserProfile;
   routing: Routing;
+  errors: Errors;
 }

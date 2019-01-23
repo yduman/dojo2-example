@@ -30,9 +30,7 @@ const startLoginCommand =
 
 const loginCommand =
   commandFactory(async ({ get, path }) => {
-    const requestPayload = {
-      user: get(path('login'))
-    };
+    const requestPayload = get(path('login'));
 
     const response = await fetch(`${baseUrl}/login`, {
       method: 'post',
@@ -41,14 +39,13 @@ const loginCommand =
     });
 
     const json = await response.json();
-    console.log("Test JSON is...");
-    console.log(JSON.stringify(json, null, 2));
+    console.log("loginCommand response is:\n", json);
 
     if (!response.ok) {
       return [
         replace(path('login', 'failed'), true),
         replace(path('login', 'loading'), false),
-        //replace(path('errors'), json.errors),
+        replace(path('errors'), json),
         replace(path('user'), {})
       ];
     }
@@ -58,8 +55,8 @@ const loginCommand =
     return [
       replace(path('routing', 'outlet'), 'home'),
       replace(path('login', 'loading'), false),
-      //replace(path('errors'), undefined),
-      replace(path('user'), json.user),
+      replace(path('errors'), undefined),
+      replace(path('user'), json),
     ];
   });
 
