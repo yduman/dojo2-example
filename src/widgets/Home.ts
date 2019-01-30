@@ -11,7 +11,8 @@ export default class Home extends WidgetBase {
   private _columnConfig = [
     {
       id: "id",
-      title: "ID"
+      title: "ID",
+      sortable: true
     },
     {
       id: "first_name",
@@ -45,7 +46,7 @@ export default class Home extends WidgetBase {
   ];
 
   async onAttach() {
-    console.log("onAttach called...");
+    console.log("calling onAttach");
     const response = await fetch("http://localhost:1234/data");
     const json = await response.json();
     this._fetcher = createFetcher(json);
@@ -54,15 +55,17 @@ export default class Home extends WidgetBase {
   }
 
   protected render() {
+    console.log("calling render");
     return v("div", { classes: [css.root] }, [
       v("h1", ["Grid Data"]),
-      this._fetcher ?
-      w(Grid, {
-        columnConfig: this._columnConfig,
-        fetcher: this._fetcher,
-        updater: this._updater,
-        height: 600
-      }) : null
+      this._fetcher
+        ? w(Grid, {
+            columnConfig: this._columnConfig,
+            fetcher: this._fetcher,
+            updater: this._updater,
+            height: 600
+          })
+        : null
     ]);
   }
 }

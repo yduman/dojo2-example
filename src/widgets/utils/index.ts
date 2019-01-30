@@ -1,5 +1,6 @@
 import { FetcherOptions } from "@dojo/widgets/grid/interfaces";
 import { sorter, filterer } from "@dojo/widgets/grid/utils";
+import { findIndex } from "@dojo/framework/shim/array";
 
 export const createRestFetcher = (url: string): any => {
   const fetchRequest = fetch(url, {
